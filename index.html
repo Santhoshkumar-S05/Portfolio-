@@ -23,6 +23,11 @@
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
+            padding: 25px;
+        }
+
+        .title {
+            color: #5C6AC4;
         }
 
         /* Custom Scrollbar */
@@ -39,7 +44,7 @@
             border-radius: 4px;
         }
 
-        /* Navigation - Moved to Right */
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -138,7 +143,7 @@
             transform: rotate(45deg) translate(-5px, -6px);
         }
 
-        /* Hero Section - Photo moved down */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -151,14 +156,16 @@
             overflow: hidden;
         }
 
+        /* Background Shapes for Hero */
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="50" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="30" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="heroPattern" width="20" height="20" patternUnits="userSpaceOnUse"><polygon points="10,1 4,7 10,13 16,7" fill="rgba(255,255,255,0.1)"/><circle cx="5" cy="15" r="2" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23heroPattern)"/></svg>');
+            animation: float 20s ease-in-out infinite;
         }
 
         .hero-content {
@@ -173,6 +180,7 @@
             margin-bottom: 1rem;
             font-weight: 700;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease-out;
         }
 
         .hero .tagline {
@@ -180,17 +188,18 @@
             margin-bottom: 2rem;
             opacity: 0.95;
             font-weight: 400;
+            animation: slideInUp 1s ease-out 0.3s both;
         }
 
-        /* Profile image moved after tagline */
+        /* Profile image with circular movement animation */
         .profile-img {
             width: 220px;
             height: 220px;
             border-radius: 50%;
             border: 6px solid rgba(255, 255, 255, 0.3);
-            margin: 2rem auto;
+            margin: 3rem auto;
             object-fit: cover;
-            animation: float 6s ease-in-out infinite;
+            animation: circularFloat 6s ease-in-out infinite, fadeIn 1s ease-out 0.6s both;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             display: block;
         }
@@ -201,6 +210,7 @@
             margin: 2rem auto 2.5rem;
             opacity: 0.9;
             line-height: 1.8;
+            animation: slideInUp 1s ease-out 0.9s both;
         }
 
         .cta-buttons {
@@ -208,6 +218,7 @@
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 1.2s both;
         }
 
         .btn {
@@ -267,10 +278,22 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
-        /* Section Styles */
+        /* Section Styles - VISIBLE BY DEFAULT with animations */
         .section {
             padding: 100px 0;
             position: relative;
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 1s ease;
+        }
+
+        /* Animation classes for scroll effects */
+        .section.animate-left {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .section.animate-right {
+            animation: slideInRight 1s ease-out;
         }
 
         .container {
@@ -285,6 +308,7 @@
             margin-bottom: 1rem;
             font-weight: 700;
             position: relative;
+            animation: fadeInUp 1s ease-out;
         }
 
         .section-title.gradient-text {
@@ -302,6 +326,7 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
 
         .section-title::after {
@@ -316,7 +341,7 @@
             border-radius: 2px;
         }
 
-        /* About Section */
+        /* About Section with Background Shapes */
         .about {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             position: relative;
@@ -329,7 +354,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(102,126,234,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="aboutPattern" width="30" height="30" patternUnits="userSpaceOnUse"><rect x="5" y="5" width="8" height="8" fill="rgba(102,126,234,0.1)" transform="rotate(45 9 9)"/><circle cx="20" cy="20" r="3" fill="rgba(102,126,234,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23aboutPattern)"/></svg>');
         }
 
         .about-content {
@@ -339,6 +364,7 @@
             align-items: center;
             position: relative;
             z-index: 2;
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         .about-text {
@@ -366,10 +392,11 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: bounceIn 1s ease-out;
         }
 
         .stat-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.05);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
 
@@ -391,16 +418,29 @@
             font-size: 0.9rem;
         }
 
-        /* Skills Section */
+        /* Skills Section with Background Shapes */
         .skills {
             background: white;
             position: relative;
+        }
+
+        .skills::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="skillsPattern" width="25" height="25" patternUnits="userSpaceOnUse"><polygon points="12.5,2 23,12.5 12.5,23 2,12.5" fill="rgba(102,126,234,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23skillsPattern)"/></svg>');
         }
 
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         .skill-category {
@@ -411,6 +451,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            animation: slideInUp 1s ease-out;
         }
 
         .skill-category::before {
@@ -431,7 +472,7 @@
         }
 
         .skill-category:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) rotateY(5deg);
             box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
         }
 
@@ -462,31 +503,87 @@
             justify-content: space-between;
             align-items: center;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-list li:hover {
+            transform: translateX(10px);
+            color: #ffeb3b;
         }
 
         .skill-list li:last-child {
             border-bottom: none;
         }
 
-        .skill-bar {
-            width: 120px;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 4px;
-            animation: fillBar 2s ease;
-        }
-
-        /* Internship Section - Changed from Education & Experience */
-        .internship {
+        /* Education Section with Background Shapes */
+        .education {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            position: relative;
+        }
+
+        .education::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="eduPattern" width="28" height="49" patternUnits="userSpaceOnUse"><polygon points="14,1 26,8 26,22 14,29 2,22 2,8" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23eduPattern)"/></svg>');
+        }
+
+        .education-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .education-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4rem 3rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            animation: zoomIn 1s ease-out;
+        }
+
+        .education-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .education-degree {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .education-school {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+        }
+
+        .education-duration {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .education-cgpa {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        /* Internship Section with Background Shapes */
+        .internship {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             position: relative;
         }
 
@@ -497,13 +594,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hexagons" width="28" height="49" patternUnits="userSpaceOnUse"><polygon points="14,1 26,8 26,22 14,29 2,22 2,8" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23hexagons)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="internPattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(102,126,234,0.1)"/><rect x="15" y="15" width="3" height="3" fill="rgba(102,126,234,0.05)" transform="rotate(45 16.5 16.5)"/></pattern></defs><rect width="100" height="100" fill="url(%23internPattern)"/></svg>');
         }
 
         .timeline {
             position: relative;
             padding-left: 3rem;
             z-index: 2;
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         .timeline::before {
@@ -513,25 +611,28 @@
             top: 0;
             bottom: 0;
             width: 4px;
-            background: rgba(255, 255, 255, 0.3);
+            background: linear-gradient(45deg, #667eea, #764ba2);
             border-radius: 2px;
         }
 
         .timeline-item {
             position: relative;
             margin-bottom: 4rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.9);
             padding: 3rem;
             border-radius: 20px;
             margin-left: 3rem;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            animation: slideInRight 1s ease-out;
         }
 
         .timeline-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(10px);
+            background: rgba(255, 255, 255, 1);
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
 
         .timeline-item::before {
@@ -541,14 +642,14 @@
             top: 3rem;
             width: 20px;
             height: 20px;
-            background: white;
+            background: linear-gradient(45deg, #667eea, #764ba2);
             border-radius: 50%;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
         }
 
         .timeline-date {
-            color: rgba(255, 255, 255, 0.8);
+            color: #667eea;
             font-weight: 600;
             margin-bottom: 1rem;
             font-size: 0.9rem;
@@ -560,20 +661,21 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
+            color: #333;
         }
 
         .timeline-company {
-            color: rgba(255, 255, 255, 0.9);
+            color: #666;
             margin-bottom: 1.5rem;
             font-weight: 500;
         }
 
         .timeline-description {
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9);
+            color: #555;
         }
 
-        /* Projects Section */
+        /* Projects Section with Background Shapes */
         .projects {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -587,7 +689,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="triangles" width="20" height="20" patternUnits="userSpaceOnUse"><polygon points="10,2 18,16 2,16" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23triangles)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="projectsPattern" width="20" height="20" patternUnits="userSpaceOnUse"><polygon points="10,2 18,16 2,16" fill="rgba(255,255,255,0.05)"/><circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23projectsPattern)"/></svg>');
         }
 
         .projects-grid {
@@ -596,6 +698,7 @@
             gap: 3rem;
             position: relative;
             z-index: 2;
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         .project-card {
@@ -605,10 +708,11 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInUp 1s ease-out;
         }
 
         .project-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-15px) rotateX(5deg);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
         }
 
@@ -622,6 +726,11 @@
             font-size: 4rem;
             margin-bottom: 1.5rem;
             opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.2) rotate(10deg);
         }
 
         .project-title {
@@ -654,12 +763,17 @@
             font-size: 0.8rem;
             font-weight: 500;
             border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
         }
 
-        /* Certificates Section */
+        .tech-tag:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Certificates Section with Background Shapes */
         .certificates {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             position: relative;
         }
 
@@ -670,7 +784,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="triangles" width="20" height="20" patternUnits="userSpaceOnUse"><polygon points="10,2 18,16 2,16" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23triangles)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="certPattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(102,126,234,0.1)"/><polygon points="15,5 17,7 15,9 13,7" fill="rgba(102,126,234,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23certPattern)"/></svg>');
         }
 
         .certificates-grid {
@@ -679,10 +793,11 @@
             gap: 3rem;
             position: relative;
             z-index: 2;
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         .certificate-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.9);
             padding: 3rem 2rem;
             border-radius: 25px;
             text-align: center;
@@ -691,6 +806,8 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            animation: bounceIn 1s ease-out;
         }
 
         .certificate-card::before {
@@ -700,7 +817,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
             transition: all 0.3s ease;
             opacity: 0;
         }
@@ -711,8 +828,8 @@
         }
 
         .certificate-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
 
         .certificate-icon {
@@ -720,6 +837,12 @@
             margin-bottom: 1.5rem;
             position: relative;
             z-index: 2;
+            color: #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-card:hover .certificate-icon {
+            transform: scale(1.2) rotate(360deg);
         }
 
         .certificate-title {
@@ -728,16 +851,17 @@
             margin-bottom: 1rem;
             position: relative;
             z-index: 2;
+            color: #333;
         }
 
         .certificate-issuer {
-            color: rgba(255, 255, 255, 0.8);
+            color: #666;
             font-size: 0.9rem;
             position: relative;
             z-index: 2;
         }
 
-        /* Contact Section */
+        /* Contact Section with Background Shapes */
         .contact {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
@@ -751,7 +875,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="waves" width="100" height="20" patternUnits="userSpaceOnUse"><path d="M0 10 Q 25 0 50 10 T 100 10 V 20 H 0 Z" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23waves)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="contactPattern" width="100" height="20" patternUnits="userSpaceOnUse"><path d="M0 10 Q 25 0 50 10 T 100 10 V 20 H 0 Z" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23contactPattern)"/></svg>');
         }
 
         .contact-grid {
@@ -760,6 +884,7 @@
             gap: 3rem;
             position: relative;
             z-index: 2;
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         .contact-item {
@@ -770,10 +895,11 @@
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInUp 1s ease-out;
         }
 
         .contact-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.05);
             background: rgba(255, 255, 255, 0.15);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
@@ -782,6 +908,11 @@
             font-size: 3rem;
             margin-bottom: 1.5rem;
             color: #74b9ff;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            transform: scale(1.2) rotate(360deg);
         }
 
         .contact-title {
@@ -839,22 +970,121 @@
         }
 
         .scroll-top:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
             box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
         }
 
         /* Animations */
+        @keyframes circularFloat {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px); 
+            }
+            25% { 
+                transform: translateY(-8px) translateX(4px); 
+            }
+            50% { 
+                transform: translateY(-3px) translateX(-4px); 
+            }
+            75% { 
+                transform: translateY(-12px) translateX(2px); 
+            }
+        }
+
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
         }
 
-        @keyframes fillBar {
-            from { width: 0; }
-            to { width: 100%; }
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Responsive Design - Improved Mobile Layout */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: row;
@@ -1028,22 +1258,6 @@
                 padding: 2rem 1.5rem;
             }
         }
-
-        /* Additional mobile fixes */
-        @media (max-width: 320px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .btn {
-                padding: 12px 25px;
-                font-size: 0.9rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -1055,6 +1269,7 @@
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
                 <li><a href="#internship" class="nav-link">Internship</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#certificates" class="nav-link">Certificates</a></li>
@@ -1072,14 +1287,14 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Santhoshkumar S</h1>
-            <p class="tagline">Data Analyst | AI & ML Enthusiast | Power BI Developer</p>
+            <p class="tagline">AI & ML Student | Data Analytics Enthusiast | Problem Solver</p>
             <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_20250606_140727.jpg-VyVQSJHbSK6E0qJRZ00CeXimsPcroc.jpeg" alt="Santhoshkumar S" class="profile-img">
-            <p class="intro">Welcome to my portfolio! I'm passionate about transforming raw data into meaningful insights using tools like Power BI, Python, and machine learning. With a strong academic background and practical internship experience, I'm on a journey to solve real-world problems using technology.</p>
+            <p class="intro">Dedicated and adaptable professional with a proactive attitude and the ability to learn quickly. Strong work ethic and effective communication skills. Eager to contribute to a dynamic team and support organizational goals.</p>
             <div class="cta-buttons">
                 <a href="#about" class="btn btn-primary">
                     <i class="fas fa-user"></i> Explore My Work
                 </a>
-                <a href="#" class="btn btn-secondary" onclick="downloadResumePDF()">
+                <a href="javascript:void(0)" class="btn btn-secondary" onclick="downloadOriginalResume()">
                     <i class="fas fa-download"></i> Download Resume
                 </a>
             </div>
@@ -1090,11 +1305,12 @@
     <section id="about" class="section about">
         <div class="container">
             <h2 class="section-title gradient-text">About Me</h2>
-            <p class="section-subtitle">Passionate about data-driven solutions and innovative technology</p>
+            <p class="section-subtitle">Passionate about AI, Machine Learning, and data-driven solutions</p>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I'm currently pursuing a B.E. in Artificial Intelligence and Machine Learning at Rajalakshmi Institute of Technology (2022–2026), with a current CGPA of 8.0. I have a proactive learning mindset, strong analytical abilities, and a passion for creating data-driven solutions.</p>
-                    <p>I'm fluent in English and Tamil, and I enjoy playing chess and carrom in my free time. My goal is to leverage technology to solve real-world problems and make a meaningful impact in the field of data analytics and artificial intelligence.</p>
+                    <p>I'm currently pursuing a B.E. in Artificial Intelligence and Machine Learning at Rajalakshmi Institute of Technology with a CGPA of 8.0 (up to 5th semester). I have a proactive learning mindset and strong analytical abilities.</p>
+                    <p>My journey includes hands-on experience through internships, participation in hackathons like Smart India Hackathon, and solving 300+ programming problems on Skillrack. I'm passionate about leveraging technology to solve real-world problems.</p>
+                    <p>I'm fluent in English and Tamil, and I enjoy playing chess and carrom in my free time. My goal is to make a meaningful impact in the field of artificial intelligence and data analytics.</p>
                 </div>
                 <div class="about-stats">
                     <div class="stat-item">
@@ -1106,11 +1322,11 @@
                         <div class="stat-label">Problems Solved</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">2</div>
-                        <div class="stat-label">Internships</div>
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Major Projects</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">6+</div>
+                        <div class="stat-number">4+</div>
                         <div class="stat-label">Certifications</div>
                     </div>
                 </div>
@@ -1122,62 +1338,66 @@
     <section id="skills" class="section skills">
         <div class="container">
             <h2 class="section-title gradient-text">Skills</h2>
-            <p class="section-subtitle">Expertise in modern data analytics and machine learning technologies</p>
+            <p class="section-subtitle">Technical expertise across multiple domains</p>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3><i class="fas fa-chart-bar"></i> Data Analytics</h3>
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
                     <ul class="skill-list">
-                        <li>Power BI <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div></li>
-                        <li>Python <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div></li>
-                        <li>SQL <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div></li>
-                        <li>Data Visualization <div class="skill-bar"><div class="skill-progress" style="width: 88%;"></div></div></li>
+                        <li>Python</li>
+                        <li>SQL</li>
+                        <li>Java</li>
+                        <li>C Programming</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-robot"></i> Machine Learning</h3>
+                    <h3><i class="fas fa-chart-bar"></i> Data & Analytics</h3>
                     <ul class="skill-list">
-                        <li>Scikit-learn <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div></div></li>
-                        <li>Flask <div class="skill-bar"><div class="skill-progress" style="width: 70%;"></div></div></li>
-                        <li>Jupyter Notebook <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div></li>
-                        <li>Data Cleaning <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div></li>
+                        <li>Power BI</li>
+                        <li>Machine Learning</li>
+                        <li>Data Visualization</li>
+                        <li>Statistical Analysis</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <h3><i class="fas fa-globe"></i> Web & Tools</h3>
                     <ul class="skill-list">
-                        <li>Java <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div></div></li>
-                        <li>C Programming <div class="skill-bar"><div class="skill-progress" style="width: 70%;"></div></div></li>
-                        <li>HTML & CSS <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div></li>
-                        <li>DAX Calculations <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div></li>
+                        <li>HTML & CSS</li>
+                        <li>Flask</li>
+                        <li>Figma</li>
+                        <li>Git & GitHub</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Internship Section (Renamed from Education & Experience) -->
+    <!-- Education Section -->
+    <section id="education" class="section education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <p class="section-subtitle">Academic background and achievements</p>
+            <div class="education-content">
+                <div class="education-card">
+                    <div class="education-degree">B.E (Artificial Intelligence and Machine Learning)</div>
+                    <div class="education-school">Rajalakshmi Institute of Technology</div>
+                    <div class="education-duration">05/2022 – 05/2026</div>
+                    <div class="education-cgpa">CGPA: 8.0 (up to 5th semester)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internship Section -->
     <section id="internship" class="section internship">
         <div class="container">
-            <h2 class="section-title">Internship</h2>
-            <p class="section-subtitle">My academic journey and professional experience</p>
+            <h2 class="section-title gradient-text">Internships</h2>
+            <p class="section-subtitle">Professional experience and learning journey</p>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-date">April 2025 – May 2025</div>
-                    <div class="timeline-title">AI & Data Analytics Intern</div>
-                    <div class="timeline-company">Edunet Foundation – Skills4Future Program (Virtual)</div>
-                    <div class="timeline-description">Completed a 4-week internship focused on applying AI and data analytics for sustainable development. Worked on a real-world project involving crop and fertilizer recommendations using machine learning. Gained hands-on experience in Python, model deployment with Flask, and full-stack integration.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">January 2025 – February 2025</div>
-                    <div class="timeline-title">Data Analyst Intern</div>
-                    <div class="timeline-company">NullClass, Hosur, India</div>
-                    <div class="timeline-description">Worked on Power BI dashboards for retail and social media data. Cleaned and transformed datasets, applied DAX calculations, and created interactive reports. Presented insights through dashboards and visual storytelling.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">May 2022 – May 2026</div>
-                    <div class="timeline-title">B.E. – Artificial Intelligence and Machine Learning</div>
-                    <div class="timeline-company">Rajalakshmi Institute of Technology, Chennai</div>
-                    <div class="timeline-description">Currently pursuing Bachelor's degree with a CGPA of 8.0 (up to 5th semester). Focusing on AI, ML, data analytics, and software development.</div>
+                    <div class="timeline-date">04/2025 – 05/2025</div>
+                    <div class="timeline-title">Artificial Intelligence and Data Analytics</div>
+                    <div class="timeline-company">Edunet Foundation | Bangalore, India</div>
+                    <div class="timeline-description">Completed during an internship at Edunet Foundation. The project suggests suitable crops and fertilizers based on soil and weather data using Python and machine learning. Gained hands-on experience in data preprocessing, model training, and web application development using Flask.</div>
                 </div>
             </div>
         </div>
@@ -1187,76 +1407,66 @@
     <section id="projects" class="section projects">
         <div class="container">
             <h2 class="section-title">Projects</h2>
-            <p class="section-subtitle">Innovative solutions showcasing my technical expertise</p>
+            <p class="section-subtitle">Innovative solutions showcasing technical expertise</p>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-header">
-                        <div class="project-icon">🌱</div>
-                        <h3 class="project-title">Crop & Fertilizer Recommendation System</h3>
+                        <div class="project-icon">🤖</div>
+                        <h3 class="project-title">AI Therapy Chatbot</h3>
                     </div>
                     <div class="project-content">
-                        <p class="project-description">Developed a web app that recommends crops and fertilizers based on soil and environmental parameters. Used Random Forest for classification and LabelEncoder for preprocessing.</p>
+                        <p class="project-description">This project is a simple web-based chatbot that helps users by detecting how they feel based on their text. It uses Artificial Intelligence (AI) to understand emotions like sadness, happiness, or anger from the text and replies with kind and supportive messages. I built the backend using Python and Flask, and used a pre-trained model (DistilBERT) to detect emotions.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">DistilBERT</span>
+                            <span class="tech-tag">NLP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">📄</div>
+                        <h3 class="project-title">Resume Screening Bot</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">This is a smart resume checker that compares a resume with any job description and gives a match score. It also shows which important keywords are missing in the resume. I created this using Python, Flask, and some NLP techniques like TF-IDF and cosine similarity. The resume is uploaded as a PDF, and the job description is pasted into a text box. The tool then gives feedback to improve the resume.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">TF-IDF</span>
+                            <span class="tech-tag">Cosine Similarity</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🌱</div>
+                        <h3 class="project-title">Crop and Fertilizer Recommendation System</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">This project recommends the best crop to grow and the right fertilizer to use based on soil and weather conditions. I used a dataset that includes values like nitrogen, phosphorus, potassium, temperature, humidity, pH, and rainfall. I applied machine learning to predict which crop is suitable and gave fertilizer suggestions to improve crop yield. The project was done using Python and libraries like Pandas and Scikit-learn.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
                             <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">HTML/CSS</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">🛒</div>
-                        <h3 class="project-title">Retail Sales Analysis</h3>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">Created interactive dashboards in Power BI for tracking revenue trends, top products, and customer geography. Applied DAX filters and cleaning techniques.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Power BI</span>
-                            <span class="tech-tag">DAX</span>
-                            <span class="tech-tag">Data Visualization</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">📺</div>
-                        <h3 class="project-title">Amazon Prime Dashboard</h3>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">Designed Power BI dashboard for subscription metrics, user engagement, and content performance. Applied custom visuals and data modeling for management-level reporting.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Power BI</span>
-                            <span class="tech-tag">Data Modeling</span>
-                            <span class="tech-tag">Custom Visuals</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">🐦</div>
-                        <h3 class="project-title">Twitter Engagement Analysis</h3>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">Analyzed tweet engagement using Power BI. Created a dashboard to show top-performing tweets, time filters, character count filters, and engagement patterns.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Power BI</span>
-                            <span class="tech-tag">DAX</span>
-                            <span class="tech-tag">Social Media Analytics</span>
+                            <span class="tech-tag">Machine Learning</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-header">
                         <div class="project-icon">🏥</div>
-                        <h3 class="project-title">Medicast – Healthcare UX</h3>
+                        <h3 class="project-title">Medicast (Healthcare Analytics)</h3>
                     </div>
                     <div class="project-content">
-                        <p class="project-description">Designed using Figma. Created a user-friendly healthcare dashboard for easy navigation and tracking patient metrics with modern aesthetics.</p>
+                        <p class="project-description">Designed an intuitive and user-friendly Medicast UI/UX prototype using Figma. Focused on seamless navigation, modern aesthetics, and user-centric interactions for an enhanced healthcare experience.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Figma</span>
                             <span class="tech-tag">UI/UX Design</span>
                             <span class="tech-tag">Healthcare</span>
+                            <span class="tech-tag">Prototyping</span>
                         </div>
                     </div>
                 </div>
@@ -1267,38 +1477,28 @@
     <!-- Certificates Section -->
     <section id="certificates" class="section certificates">
         <div class="container">
-            <h2 class="section-title">Certificates</h2>
+            <h2 class="section-title gradient-text">Certificates</h2>
             <p class="section-subtitle">Professional certifications and achievements</p>
             <div class="certificates-grid">
                 <div class="certificate-card">
-                    <div class="certificate-icon">🏆</div>
+                    <div class="certificate-icon">📊</div>
                     <h3 class="certificate-title">Data Visualization: Empowering Business with Effective Insights</h3>
-                    <p class="certificate-issuer">TATA Forage</p>
+                    <p class="certificate-issuer">Forage (TATA)</p>
                 </div>
                 <div class="certificate-card">
                     <div class="certificate-icon">💼</div>
                     <h3 class="certificate-title">Career Essentials in Data Analysis</h3>
-                    <p class="certificate-issuer">Microsoft & LinkedIn</p>
+                    <p class="certificate-issuer">Microsoft and LinkedIn</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon">🐍</div>
+                    <h3 class="certificate-title">Explore Machine Learning using Python</h3>
+                    <p class="certificate-issuer">Infosys</p>
                 </div>
                 <div class="certificate-card">
                     <div class="certificate-icon">🤖</div>
-                    <h3 class="certificate-title">Explore Machine Learning using Python</h3>
-                    <p class="certificate-issuer">Infosys Springboard</p>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-icon">🧠</div>
                     <h3 class="certificate-title">Introduction to Generative AI</h3>
                     <p class="certificate-issuer">Coursera</p>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-icon">🎓</div>
-                    <h3 class="certificate-title">AI & Data Analytics Internship Certificate</h3>
-                    <p class="certificate-issuer">AICTE, Shell, Edunet Foundation</p>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-icon">🏅</div>
-                    <h3 class="certificate-title">Smart India Hackathon Participant</h3>
-                    <p class="certificate-issuer">Government of India</p>
                 </div>
             </div>
         </div>
@@ -1337,7 +1537,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Santhoshkumar S. All rights reserved. Built with passion for data and technology.</p>
+            <p>&copy; 2025 Santhoshkumar S. All rights reserved. Built with passion for AI and technology.</p>
         </div>
     </footer>
 
@@ -1390,6 +1590,33 @@
                     }
                 });
             });
+
+            // SCROLL ANIMATIONS - Add animation classes when sections come into view
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add alternating left/right animations
+                        const sectionIndex = Array.from(sections).indexOf(entry.target);
+                        if (sectionIndex % 2 === 0) {
+                            entry.target.classList.add('animate-left');
+                        } else {
+                            entry.target.classList.add('animate-right');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections for scroll animations
+            sections.forEach(section => {
+                if (section.classList.contains('section')) {
+                    observer.observe(section);
+                }
+            });
         });
 
         // Mobile menu toggle
@@ -1429,8 +1656,8 @@
             });
         }
 
-        // Download resume as PDF function
-        function downloadResumePDF() {
+        // Download ORIGINAL resume as PDF function with proper formatting
+        function downloadOriginalResume() {
             // Make sure jsPDF is loaded
             if (typeof window.jspdf === 'undefined') {
                 alert("PDF library is loading. Please try again in a moment.");
@@ -1440,136 +1667,166 @@
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
-            // Set font
+            // Header
             doc.setFont("helvetica", "bold");
-            doc.setFontSize(20);
-            doc.text("SANTHOSHKUMAR S", 20, 20);
+            doc.setFontSize(22);
+            doc.text("SANTHOSHKUMAR S", 105, 20, { align: 'center' });
             
+            // Contact Info
             doc.setFont("helvetica", "normal");
-            doc.setFontSize(12);
-            doc.text("Data Analyst | AI & ML Enthusiast | Power BI Developer", 20, 30);
+            doc.setFontSize(10);
+            doc.text("sandysakthivel2005@gmail.com | 08526202078 | LinkedIn | GitHub", 105, 28, { align: 'center' });
             
-            // Contact Information
+            // Profile Section
             doc.setFont("helvetica", "bold");
             doc.setFontSize(14);
-            doc.text("Contact Information:", 20, 45);
+            doc.text("PROFILE", 20, 45);
             
             doc.setFont("helvetica", "normal");
             doc.setFontSize(10);
-            doc.text("Email: sandysakthivel2005@gmail.com", 20, 55);
-            doc.text("Phone: 08526202078", 20, 62);
-            doc.text("LinkedIn: linkedin.com/in/iamsanthoshkumarsakthivel", 20, 69);
-            doc.text("GitHub: github.com/Santhoshkumar-S05", 20, 76);
+            const profileText = "Dedicated and adaptable professional with a proactive attitude and the ability to learn quickly. Strong work ethic and effective communication skills. Eager to contribute to a dynamic team and support organizational goals.";
+            const profileLines = doc.splitTextToSize(profileText, 170);
+            doc.text(profileLines, 20, 52);
             
-            // Education
+            // Education Section
             doc.setFont("helvetica", "bold");
             doc.setFontSize(14);
-            doc.text("EDUCATION:", 20, 90);
+            doc.text("EDUCATION", 20, 75);
+            
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(11);
+            doc.text("B.E (Artificial Intelligence and Machine Learning)", 20, 85);
             
             doc.setFont("helvetica", "normal");
             doc.setFontSize(10);
-            doc.text("B.E. – Artificial Intelligence and Machine Learning", 20, 100);
-            doc.text("Rajalakshmi Institute of Technology, Chennai", 20, 107);
-            doc.text("May 2022 – May 2026", 20, 114);
-            doc.text("CGPA: 8.0 (up to 5th semester)", 20, 121);
+            doc.text("Rajalakshmi Institute of Technology", 20, 92);
+            doc.text("05/2022 – 05/2026", 20, 99);
+            doc.text("CGPA: 8.0 (up to 5th sem)", 20, 106);
             
-            // Internships
+            // Internships Section
             doc.setFont("helvetica", "bold");
             doc.setFontSize(14);
-            doc.text("INTERNSHIPS:", 20, 135);
+            doc.text("INTERNSHIPS", 20, 125);
+            
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(11);
+            doc.text("Artificial Intelligence and Data Analytics", 20, 135);
             
             doc.setFont("helvetica", "normal");
             doc.setFontSize(10);
-            doc.text("AI & Data Analytics Intern", 20, 145);
-            doc.text("Edunet Foundation – Skills4Future Program", 20, 152);
-            doc.text("April 28, 2025 – May 28, 2025 (Virtual)", 20, 159);
+            doc.text("Edunet Foundation", 20, 142);
+            doc.text("04/2025 – 05/2025 | Bangalore, India", 20, 149);
             
-            doc.text("Data Analyst Intern", 20, 172);
-            doc.text("NullClass, Hosur, India", 20, 179);
-            doc.text("January 2025 – February 2025", 20, 186);
+            const internDesc = "Completed during an internship at Edunet Foundation. The project suggests suitable crops and fertilizers based on soil and weather data using Python and machine learning.";
+            const internLines = doc.splitTextToSize(internDesc, 170);
+            doc.text(internLines, 20, 156);
             
-            // Skills
+            // Skills Section
             doc.setFont("helvetica", "bold");
             doc.setFontSize(14);
-            doc.text("SKILLS:", 20, 200);
+            doc.text("SKILLS", 20, 175);
             
             doc.setFont("helvetica", "normal");
             doc.setFontSize(10);
-            doc.text("Power BI, Python, SQL, Flask, Scikit-learn, Java, C Programming,", 20, 210);
-            doc.text("HTML & CSS, Jupyter Notebook, Data Visualization, Machine Learning,", 20, 217);
-            doc.text("DAX Calculations", 20, 224);
+            doc.text("Python, SQL, Java, C Programming, Power BI, HTML, CSS", 20, 185);
             
-            // Add new page for projects and certifications
+            // Achievements Section
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(14);
+            doc.text("ACHIEVEMENTS", 20, 200);
+            
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(10);
+            doc.text("1. Participant in the Smart India Hackathon, showcasing innovative projects to address real-world challenges.", 20, 210);
+            const achievement2 = "2. Earned a Python programming certification on Skillrack by solving 300 problems, showcasing expertise in coding, problem-solving, and algorithms.";
+            const achievement2Lines = doc.splitTextToSize(achievement2, 170);
+            doc.text(achievement2Lines, 20, 217);
+            
+            // Certificates Section
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(14);
+            doc.text("CERTIFICATES", 20, 235);
+            
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(10);
+            doc.text("• Data Visualization: Empowering Business with Effective Insights by Forage (TATA)", 20, 245);
+            doc.text("• Career Essentials in Data Analysis by Microsoft and LinkedIn", 20, 252);
+            doc.text("• Explore Machine Learning using Python by Infosys", 20, 259);
+            doc.text("• Introduction to Generative AI course on Coursera", 20, 266);
+            
+            // Add new page for projects
             doc.addPage();
             
-            // Projects
+            // Projects Section
             doc.setFont("helvetica", "bold");
             doc.setFontSize(14);
-            doc.text("PROJECTS:", 20, 20);
+            doc.text("PROJECTS", 20, 20);
+            
+            // Project 1
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(11);
+            doc.text("1. AI Therapy Chatbot", 20, 35);
             
             doc.setFont("helvetica", "normal");
             doc.setFontSize(10);
-            doc.text("1. Crop & Fertilizer Recommendation System", 20, 30);
-            doc.text("2. Retail Sales Analysis", 20, 37);
-            doc.text("3. Amazon Prime Dashboard", 20, 44);
-            doc.text("4. Twitter Engagement Analysis", 20, 51);
-            doc.text("5. Medicast – Healthcare UX Prototype", 20, 58);
+            const project1Desc = "This project is a simple web-based chatbot that helps users by detecting how they feel based on their text. It uses Artificial Intelligence (AI) to understand emotions like sadness, happiness, or anger from the text and replies with kind and supportive messages. I built the backend using Python and Flask, and used a pre-trained model (DistilBERT) to detect emotions.";
+            const project1Lines = doc.splitTextToSize(project1Desc, 170);
+            doc.text(project1Lines, 20, 42);
             
-            // Certifications
+            // Project 2
             doc.setFont("helvetica", "bold");
-            doc.setFontSize(14);
-            doc.text("CERTIFICATIONS:", 20, 75);
+            doc.setFontSize(11);
+            doc.text("2. Resume Screening Bot", 20, 70);
             
             doc.setFont("helvetica", "normal");
             doc.setFontSize(10);
-            doc.text("- Data Visualization: Empowering Business with Effective Insights – TATA Forage", 20, 85);
-            doc.text("- Career Essentials in Data Analysis – Microsoft & LinkedIn", 20, 92);
-            doc.text("- Explore Machine Learning using Python – Infosys Springboard", 20, 99);
-            doc.text("- Introduction to Generative AI – Coursera", 20, 106);
-            doc.text("- AI & Data Analytics Internship Certificate – AICTE, Shell, Edunet Foundation", 20, 113);
+            const project2Desc = "This is a smart resume checker that compares a resume with any job description and gives a match score. It also shows which important keywords are missing in the resume. I created this using Python, Flask, and some NLP techniques like TF-IDF and cosine similarity. The resume is uploaded as a PDF, and the job description is pasted into a text box. The tool then gives feedback to improve the resume.";
+            const project2Lines = doc.splitTextToSize(project2Desc, 170);
+            doc.text(project2Lines, 20, 77);
             
-            // Achievements
+            // Project 3
             doc.setFont("helvetica", "bold");
-            doc.setFontSize(14);
-            doc.text("ACHIEVEMENTS:", 20, 130);
+            doc.setFontSize(11);
+            doc.text("3. Crop and Fertilizer Recommendation System", 20, 105);
             
             doc.setFont("helvetica", "normal");
             doc.setFontSize(10);
-            doc.text("- Participated in Smart India Hackathon", 20, 140);
-            doc.text("- Solved 300+ problems in Python on Skillrack", 20, 147);
+            const project3Desc = "This project recommends the best crop to grow and the right fertilizer to use based on soil and weather conditions. I used a dataset that includes values like nitrogen, phosphorus, potassium, temperature, humidity, pH, and rainfall. I applied machine learning to predict which crop is suitable and gave fertilizer suggestions to improve crop yield. The project was done using Python and libraries like Pandas and Scikit-learn.";
+            const project3Lines = doc.splitTextToSize(project3Desc, 170);
+            doc.text(project3Lines, 20, 112);
             
-            // Languages
+            // Project 4
             doc.setFont("helvetica", "bold");
-            doc.setFontSize(14);
-            doc.text("LANGUAGES:", 20, 164);
+            doc.setFontSize(11);
+            doc.text("4. Medicast (Healthcare Analytics)", 20, 140);
             
             doc.setFont("helvetica", "normal");
             doc.setFontSize(10);
-            doc.text("English, Tamil", 20, 174);
+            const project4Desc = "Designed an intuitive and user-friendly Medicast UI/UX prototype using Figma. Focused on seamless navigation, modern aesthetics, and user-centric interactions for an enhanced healthcare experience.";
+            const project4Lines = doc.splitTextToSize(project4Desc, 170);
+            doc.text(project4Lines, 20, 147);
             
-            // Hobbies
+            // Languages Section
             doc.setFont("helvetica", "bold");
             doc.setFontSize(14);
-            doc.text("HOBBIES & INTERESTS:", 20, 191);
+            doc.text("LANGUAGES", 20, 170);
             
             doc.setFont("helvetica", "normal");
             doc.setFontSize(10);
-            doc.text("Playing Chess, Carrom Board", 20, 201);
+            doc.text("English, Tamil", 20, 180);
+            
+            // Hobbies & Interests Section
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(14);
+            doc.text("HOBBIES & INTERESTS", 20, 195);
+            
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(10);
+            doc.text("Playing Chess, Carrom Board", 20, 205);
             
             // Save the PDF
             doc.save('Santhoshkumar_S_Resume.pdf');
         }
-
-        // Ensure jsPDF is loaded
-        window.addEventListener('load', function() {
-            // Add a script to check if jsPDF is loaded
-            const checkJsPDF = setInterval(function() {
-                if (typeof window.jspdf !== 'undefined') {
-                    clearInterval(checkJsPDF);
-                    console.log('jsPDF is loaded and ready');
-                }
-            }, 100);
-        });
     </script>
 </body>
 </html>
