@@ -23,7 +23,7 @@
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
-            padding: 25px;
+            padding: 0; /* Remove body padding to fix alignment */
         }
 
         .title {
@@ -44,10 +44,12 @@
             border-radius: 4px;
         }
 
-        /* Navigation */
+        /* FIXED Navigation */
         .navbar {
             position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
@@ -58,12 +60,13 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px; /* Increased max-width for better spacing */
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
+            width: 100%;
         }
 
         .logo {
@@ -73,22 +76,26 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            flex-shrink: 0; /* Prevent logo from shrinking */
+            white-space: nowrap; /* Prevent logo text wrapping */
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 0;
+            gap: 0.5rem; /* Add small gap between items */
             background: rgba(255, 255, 255, 0.9);
             padding: 0.5rem;
             border-radius: 50px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            flex-shrink: 0; /* Prevent nav from shrinking */
         }
 
         .nav-links li {
             position: relative;
+            flex-shrink: 0; /* Prevent individual items from shrinking */
         }
 
         .nav-links a {
@@ -96,11 +103,12 @@
             color: #666;
             font-weight: 500;
             transition: all 0.3s ease;
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1.2rem; /* Adjusted padding for better fit */
             border-radius: 25px;
             position: relative;
             display: block;
-            font-size: 0.95rem;
+            font-size: 0.9rem; /* Slightly smaller font for better fit */
+            white-space: nowrap; /* Prevent text wrapping */
         }
 
         .nav-links a:hover {
@@ -121,6 +129,7 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            flex-shrink: 0;
         }
 
         .mobile-menu span {
@@ -154,6 +163,7 @@
             color: white;
             position: relative;
             overflow: hidden;
+            padding: 0 25px; /* Add padding back to content areas */
         }
 
         /* Background Shapes for Hero */
@@ -280,7 +290,7 @@
 
         /* Section Styles - VISIBLE BY DEFAULT with animations */
         .section {
-            padding: 100px 0;
+            padding: 100px 25px; /* Add horizontal padding to sections */
             position: relative;
             opacity: 1;
             transform: translateX(0);
@@ -937,7 +947,7 @@
             background: #1a1a1a;
             color: white;
             text-align: center;
-            padding: 3rem 0;
+            padding: 3rem 25px; /* Add horizontal padding */
         }
 
         .footer p {
@@ -1085,10 +1095,23 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .nav-container {
+                max-width: 100%;
+                padding: 0 1.5rem;
+            }
+            
+            .nav-links a {
+                padding: 0.8rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: row;
                 justify-content: space-between;
+                padding: 0 1rem;
             }
 
             .nav-links {
@@ -1104,6 +1127,7 @@
                 transition: right 0.3s ease;
                 border-radius: 0;
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                gap: 0;
             }
 
             .nav-links.active {
@@ -1120,6 +1144,7 @@
                 text-align: center;
                 padding: 1rem;
                 border-radius: 10px;
+                font-size: 0.9rem;
             }
 
             .mobile-menu {
@@ -1196,11 +1221,15 @@
             }
 
             .section {
-                padding: 80px 0;
+                padding: 80px 15px;
             }
         }
 
         @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
             .profile-img {
                 width: 160px;
                 height: 160px;
@@ -1256,6 +1285,10 @@
 
             .contact-item {
                 padding: 2rem 1.5rem;
+            }
+
+            .section {
+                padding: 60px 10px;
             }
         }
     </style>
@@ -1630,6 +1663,8 @@
 
         // Show/hide scroll to top button
         window.addEventListener('scroll', function() {
+            const scrollTopBtn = document.querySelector('.scroll-top');
+            if (window
             const scrollTopBtn = document.querySelector('.scroll-top');
             if (window.pageYOffset > 300) {
                 scrollTopBtn.classList.add('visible');
